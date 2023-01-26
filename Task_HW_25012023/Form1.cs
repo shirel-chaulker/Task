@@ -99,18 +99,17 @@ namespace Task_HW_25012023
         //ex06
         private async void ex06_Click(object sender, EventArgs e)
         {
-          
-           
-            //while (stopLoop)
-            //{
-            //    richTextBox1.Text = await loop();
-            //    if (ct.IsCancellationRequested)
-            //    {
-            //        stopLoop = false;
-            //        Application.Exit();
 
-            //    }
-            //}
+            var ct = new CancellationTokenSource(TimeSpan.FromHours(1)).Token;
+            while (stopLoop)
+            {
+                richTextBox1.Text = await loop();
+                if (ct.IsCancellationRequested)
+                {
+                    stopLoop = false;
+                    Application.Exit();
+                }
+            }
 
         }
        
@@ -130,7 +129,7 @@ namespace Task_HW_25012023
             string lastItem = "";
             return Task.Run(() =>
             {
-                Thread.Sleep(60000);
+                Thread.Sleep(120000);
                 try
                 {
                     // Fetch XML file
